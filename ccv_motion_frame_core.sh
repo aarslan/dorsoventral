@@ -8,8 +8,8 @@
 #SBATCH --exclude=smp012,smp013,smp014,smp015
 
 #SBATCH -J motion_xtract_trial
-#SBATCH -o ~/out/motion_xtract_trial%j.out
-#SBATCH -e ~/out/motion_xtract_trial%j_e.out
+#SBATCH -o /users/aarslan/out/motion_xtract_trial%j.out
+#SBATCH -e /users/aarslan/out/motion_xtract_trial%j_e.out
 
 
 module unload python
