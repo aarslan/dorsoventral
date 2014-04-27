@@ -20,7 +20,7 @@ do
 
 			for seq in $action/*
 			do
-			./ccv_motion_frame_core $data_in $(($deg+6)) $deg `basename $action` `basename $seq` $data_out
+			./ccv_motion_frame_core.sh $data_in $(($deg+6)) $deg `basename $action` `basename $seq` $data_out
 			done
 		done
 	done
