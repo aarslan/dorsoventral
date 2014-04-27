@@ -21,7 +21,7 @@ do
 			do
 				for fr in {1..45}
 				do
-				./ccv_motion_frame_core.sh $data_in $(($deg+6)) $deg `basename $action` `basename $seq` $data_out $fr; 
+				sbatch ./ccv_motion_frame_core.sh $data_in $(($deg+6)) $deg `basename $action` `basename $seq` $data_out $fr; 
 				sleep 0.1
 				done
 			done
