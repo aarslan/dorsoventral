@@ -45,7 +45,7 @@ def process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq
 				start = real_fr-half_filter
 				end = real_fr+half_filter
 				im = vid2[start:end,:,:]
-				import ipdb; ipdb.set_trace()
+				#import ipdb; ipdb.set_trace()
 				features= mod.dorsal_pattern_divisive(par, im)
 				target_dir_name = os.path.join(target_motion_dir, act, seq)
 				target_mat_V1_name = os.path.join(target_dir_name, str(this_fr)+'_v1')
