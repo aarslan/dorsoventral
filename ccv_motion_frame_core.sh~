@@ -15,6 +15,8 @@
 module unload python
 module load enthought
 module unload cuda
+
+echo 'HERE WE GO'
 src_code_dir='/users/aarslan/code/dorsoventral'
 
 

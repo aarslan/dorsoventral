@@ -15,7 +15,7 @@ for deg in {2..60..30} #{2..360..30}
 do 
 	for bod in "${bodies[@]}"
 	do
-		for action in $data_in/$deg-$(($deg+6))/$bod/*
+		for action in $data_in/$(($deg+6))-$deg/$bod/*
 		do
 
 			for seq in $action/*

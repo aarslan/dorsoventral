@@ -20,5 +20,5 @@ echo 'HERE WE GO'
 src_code_dir='/users/aarslan/code/dorsoventral'
 
 
-python $src_code_dir/process_directory_motion.py --src_dir $1 --deg_l $2 --deg_r $3 --act $4 --seq $5 --target_dir $6 --this_fr 5
+python $src_code_dir/process_directory_motion.py --src_dir $1 --deg_r $2 --deg_l $3 --act $4 --seq $5 --target_dir $6 --this_fr 5
 
