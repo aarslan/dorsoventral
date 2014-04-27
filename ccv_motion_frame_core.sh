@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --time=00:15:00
+#SBATCH --time=00:10:00
 ##SBATCH -n 1
 ##SBATCH -N 8-16 
 #SBATCH --qos=bibs-tserre-condo
