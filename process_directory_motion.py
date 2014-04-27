@@ -44,7 +44,7 @@ def process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq
 				start = this_fr-half_filter
 				end = this_fr+half_filter
 				im = vid2[start:end,:,:]
-				import ipdb; ipdb.set_trace()
+				#import ipdb; ipdb.set_trace()
 				features= mod.dorsal_pattern_divisive(par, im)
 				target_dir_name = os.path.join(target_motion_dir, act, seq)
 				target_mat_V1_name = os.path.join(target_dir_name, str(this_fr)+'_v1')
@@ -53,13 +53,13 @@ def process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq
 					os.makedirs(target_dir_name)
 				sp.io.savemat(target_mat_V1_name, {'fr': np.array(features['V1'], dtype='Float32')}, do_compression=True)
 				sp.io.savemat(target_mat_MT_name, {'fr': np.array(features['MT'], dtype='Float32')}, do_compression=True)
-				import ipdb; ipdb.set_trace()
+				#import ipdb; ipdb.set_trace()
 		else:
 			for ii,f_fr in enumerate(range(half_filter, frame_cnt+half_filter)):
 				start = f_fr-half_filter
 				end = f_fr+half_filter
 				im = vid2[start:end,:,:]
-				import ipdb; ipdb.set_trace()
+				#import ipdb; ipdb.set_trace()
 				features= mod.dorsal_pattern_divisive(par, im)
 				target_dir_name = os.path.join(target_motion_dir, act, seq)
 				target_mat_V1_name = os.path.join(target_dir_name, str(ii+1)+'_v1')
@@ -68,7 +68,7 @@ def process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq
 					os.makedirs(target_dir_name)
 				sp.io.savemat(target_mat_V1_name, {'fr': np.array(features['V1'], dtype='Float32')}, do_compression=True)
 				sp.io.savemat(target_mat_MT_name, {'fr': np.array(features['MT'], dtype='Float32')}, do_compression=True)
-				import ipdb; ipdb.set_trace()
+				#import ipdb; ipdb.set_trace()
 			
 	else:
 		for ii,fr in enumerate(range(half_filter,frame_cnt-half_filter+1)):
