@@ -20,7 +20,7 @@ do
 
 			for seq in $action/*
 			do
-			 echo ./ccv_motion_frame $data_in $(($deg+6)) $deg `basename $action` `basename $seq` $data_out
+			./ccv_motion_frame $data_in $(($deg+6)) $deg `basename $action` `basename $seq` $data_out
 			done
 		done
 	done
