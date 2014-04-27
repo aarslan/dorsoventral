@@ -8,9 +8,9 @@ data_in='/gpfs/data/tserre/Users/aarslan/motion_morphing_dataset_stereo/features
 #data_in='/home/aarslan/prj/data/motion_morphing_dataset_stereo/features_stereo'
 data_out='/gpfs/data/tserre/Users/aarslan/motion_morphing_dataset_stereo/features_motion'
 
-declare -a bodies=("human")
+declare -a bodies=("human" "a" "y")
 
-for deg in {2..180..30} #{2..360..30}
+for deg in {2..360..30} #{2..360..30}
 
 do 
 	for bod in "${bodies[@]}"
