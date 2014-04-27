@@ -38,13 +38,14 @@ def process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq
 			#import ipdb; ipdb.set_trace()
 			vid[fr,:,:] = np.array(temp)
 			#print str(fr+filt_fr)
-		vid2 = np.concatenate((vid[-1*(half_filter):-1,:,:], vid, vid[0:half_filter,:,:]))
+		vid2 = np.concatenate((vid[-1*(half_filter+1):-1,:,:], vid, vid[0:half_filter,:,:]))
 		
 		if this_fr != -99:
-				start = this_fr-half_filter
-				end = this_fr+half_filter
+				real_fr = this_fr+half_filter-1
+				start = real_fr-half_filter
+				end = real_fr+half_filter
 				im = vid2[start:end,:,:]
-				#import ipdb; ipdb.set_trace()
+				import ipdb; ipdb.set_trace()
 				features= mod.dorsal_pattern_divisive(par, im)
 				target_dir_name = os.path.join(target_motion_dir, act, seq)
 				target_mat_V1_name = os.path.join(target_dir_name, str(this_fr)+'_v1')
@@ -59,7 +60,7 @@ def process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq
 				start = f_fr-half_filter
 				end = f_fr+half_filter
 				im = vid2[start:end,:,:]
-				#import ipdb; ipdb.set_trace()
+				import ipdb; ipdb.set_trace()
 				features= mod.dorsal_pattern_divisive(par, im)
 				target_dir_name = os.path.join(target_motion_dir, act, seq)
 				target_mat_V1_name = os.path.join(target_dir_name, str(ii+1)+'_v1')

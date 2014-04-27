@@ -38,11 +38,12 @@ def process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq
 			#import ipdb; ipdb.set_trace()
 			vid[fr,:,:] = np.array(temp)
 			#print str(fr+filt_fr)
-		vid2 = np.concatenate((vid[-1*(half_filter):-1,:,:], vid, vid[0:half_filter,:,:]))
+		vid2 = np.concatenate((vid[-1*(half_filter+1):-1,:,:], vid, vid[0:half_filter,:,:]))
 		
 		if this_fr != -99:
-				start = this_fr-half_filter
-				end = this_fr+half_filter
+				real_fr = this_fr+half_filter-1
+				start = real_fr-half_filter
+				end = real_fr+half_filter
 				im = vid2[start:end,:,:]
 				import ipdb; ipdb.set_trace()
 				features= mod.dorsal_pattern_divisive(par, im)
@@ -53,7 +54,7 @@ def process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq
 					os.makedirs(target_dir_name)
 				sp.io.savemat(target_mat_V1_name, {'fr': np.array(features['V1'], dtype='Float32')}, do_compression=True)
 				sp.io.savemat(target_mat_MT_name, {'fr': np.array(features['MT'], dtype='Float32')}, do_compression=True)
-				import ipdb; ipdb.set_trace()
+				#import ipdb; ipdb.set_trace()
 		else:
 			for ii,f_fr in enumerate(range(half_filter, frame_cnt+half_filter)):
 				start = f_fr-half_filter
@@ -68,7 +69,7 @@ def process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq
 					os.makedirs(target_dir_name)
 				sp.io.savemat(target_mat_V1_name, {'fr': np.array(features['V1'], dtype='Float32')}, do_compression=True)
 				sp.io.savemat(target_mat_MT_name, {'fr': np.array(features['MT'], dtype='Float32')}, do_compression=True)
-				import ipdb; ipdb.set_trace()
+				#import ipdb; ipdb.set_trace()
 			
 	else:
 		for ii,fr in enumerate(range(half_filter,frame_cnt-half_filter+1)):
