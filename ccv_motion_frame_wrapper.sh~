@@ -10,7 +10,7 @@ data_out='/gpfs/data/tserre/Users/aarslan/motion_morphing_dataset_stereo/feature
 
 declare -a bodies=("human")
 
-for deg in {2..90..30} #{2..360..30}
+for deg in {2..60..30} #{2..360..30}
 
 do 
 	for bod in "${bodies[@]}"
