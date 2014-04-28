@@ -24,6 +24,6 @@ do
 			done
 		done
 	done
-	sleep 1800
+	sleep 90
 done
 
