@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --time=00:15:00
+#SBATCH --time=00:10:00
 ##SBATCH -n 1
 ##SBATCH -N 8-16 
 #SBATCH --qos=bibs-tserre-condo
@@ -16,8 +16,8 @@ module unload python
 module load enthought
 module unload cuda
 
-echo 'processing' $2 $3 $4 $5
+echo 'processing' $8 $2 $3 $4 $5 
 src_code_dir='/users/aarslan/code/dorsoventral'
 
 
-python $src_code_dir/process_directory_motion.py --src_dir $1 --deg_r $2 --deg_l $3 --act $4 --seq $5 --target_dir $6 --this_fr $7
+python $src_code_dir/process_directory_motion.py --src_dir $1 --deg_r $2 --deg_l $3 --act $4 --seq $5 --target_dir $6 --this_fr $7 --body_type $8
