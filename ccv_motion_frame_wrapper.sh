@@ -20,7 +20,7 @@ do
 			for seq in $action/*
 			do
 				sbatch ./ccv_motion_frame_core.sh $data_in $(($deg+6)) $deg `basename $action` `basename $seq` $data_out $bod; 
-				sleep 0.5
+				sleep 1
 			done
 		done
 	done
