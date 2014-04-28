@@ -6,7 +6,7 @@ TARGET_DIR=/home/aarslan/prj/data/motion_morphing_dataset_angles
 
 data_in='/gpfs/data/tserre/Users/aarslan/motion_morphing_dataset_stereo/features_stereo'
 #data_in='/home/aarslan/prj/data/motion_morphing_dataset_stereo/features_stereo'
-data_out='/gpfs/data/tserre/Users/aarslan/motion_morphing_dataset_stereo/features_motion'
+data_out='/gpfs/data/tserre/Users/aarslan/motion_morphing_dataset_stereo/features_motion_fsize21'
 
 declare -a bodies=("human" "a" "y")
 
