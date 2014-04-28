@@ -10,7 +10,7 @@ data_out='/gpfs/data/tserre/Users/aarslan/motion_morphing_dataset_stereo/feature
 
 declare -a bodies=("human" "a" "y")
 
-for deg in {32..360..30} #{2..360..30}
+for deg in {2..360..30} #{2..360..30}
 
 do 
 	for bod in human a y
@@ -19,11 +19,8 @@ do
 		do
 			for seq in $action/*
 			do
-				for fr in {1..45}
-				do
-				sbatch ./ccv_motion_frame_core.sh $data_in $(($deg+6)) $deg `basename $action` `basename $seq` $data_out $fr $bod; 
+				sbatch ./ccv_motion_frame_core.sh $data_in $(($deg+6)) $deg `basename $action` `basename $seq` $data_out $bod; 
 				sleep 0.5
-				done
 			done
 		done
 	done
