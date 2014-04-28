@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #SBATCH --time=01:00:00
-##SBATCH -n 1
+##SBATCH -n 8
 ##SBATCH -N 8-16 
-#SBATCH --qos=bibs-tserre-condo
+#SBATCH --qos=pri-aarslan ##bibs-tserre-condo
 #SBATCH --exclusive
 #SBATCH --exclude=smp012,smp013,smp014,smp015
 
