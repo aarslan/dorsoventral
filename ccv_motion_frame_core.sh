@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --time=01:00:00
+#SBATCH --time=01:15:00
 ##SBATCH -n 8
 ##SBATCH -N 8-16 
 #SBATCH --qos=pri-aarslan ##bibs-tserre-condo
