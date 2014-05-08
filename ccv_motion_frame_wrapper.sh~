@@ -8,7 +8,7 @@ data_in='/gpfs/data/tserre/Users/aarslan/motion_morphing_dataset_stereo/features
 #data_in='/home/aarslan/prj/data/motion_morphing_dataset_stereo/features_stereo'
 data_out='/gpfs/data/tserre/Users/aarslan/motion_morphing_dataset_stereo/features_motion_fsize21'
 
-declare -a bodies=("human" "a" "y")
+find $data_out -size 0 -type f -delete 
 
 for deg in {2..360..30} #{2..360..30}
 
