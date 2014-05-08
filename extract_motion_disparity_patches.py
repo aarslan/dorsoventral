@@ -13,7 +13,6 @@ def extract_patches(source_stem_dir, target_stem_dir, disp_string, act, seq, num
 	source_disparity_dir = os.path.join(source_stem_dir,'disparity', disp_string)
 	source_motion_dir = os.path.join(source_stem_dir,'motion', disp_string)	
 
-
 	pool_shape_m = (1,1,1,5,5)
 	pool_shape_d = (5,5)
 	for fr in range(5, 60):

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --time=01:25:00
+#SBATCH --time=01:00:00
 #SBATCH --mem=64G
 ##SBATCH -n 8
 ##SBATCH -N 8-16 
@@ -29,11 +29,11 @@ rm $joblist -f
 for fr in {1..45}
 do
 	FILE=$6/$2-$3/$7/$4/$5/${fr}'_mt.mat'
-	echo checking $FILE
+	#echo checking $FILE
 	if [ ! -f "$FILE" ]
 	then
 	echo python $src_code_dir/process_directory_motion.py --src_dir $1 --deg_r $2 --deg_l $3 --act $4 --seq $5 --target_dir $6 --this_fr $fr --body_type $7 >> $joblist	
 	fi
 done
 
-parallel -a $joblist
+parallel -j6 -a $joblist
