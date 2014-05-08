@@ -21,17 +21,17 @@ src_code_dir='/users/aarslan/code/dorsoventral'
 joblist='/users/aarslan/joblists/'$8_$2_$3_$4_$5'filter21.jlist'
 echo before $PYTHONPATH
 export PYTHONPATH=$PYTHONPATH:/users/aarslan/tools/hmax/models/HNORM
-export PYTHONPATH=$PYTHONPATH:/usr/lib64/python26.zip
-export PYTHONPATH=$PYTHONPATH:/usr/lib64/python2.6
-export PYTHONPATH=$PYTHONPATH:/usr/lib64/python2.6/plat-linux2
-export PYTHONPATH=$PYTHONPATH:/usr/lib64/python2.6/lib-tk
-export PYTHONPATH=$PYTHONPATH:/usr/lib64/python2.6/lib-old
-export PYTHONPATH=$PYTHONPATH:/usr/lib64/python2.6/lib-dynload
-export PYTHONPATH=$PYTHONPATH:/usr/lib64/python2.6/site-packages
-export PYTHONPATH=$PYTHONPATH:/usr/lib64/python2.6/site-packages/gst-0.10
-export PYTHONPATH=$PYTHONPATH:/usr/lib64/python2.6/site-packages/gtk-2.0
-export PYTHONPATH=$PYTHONPATH:/usr/lib64/python2.6/site-packages/webkit-1.0
-export PYTHONPATH=$PYTHONPATH:/usr/lib/python2.6/site-packages 
+export PYTHONPATH=$PYTHONPATH:/users/aarslan/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/progressbar-2.3-py2.7.egg
+export PYTHONPATH=$PYTHONPATH:/users/aarslan/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/ipdb-0.8-py2.7.egg
+export PYTHONPATH=$PYTHONPATH:/gpfs/runtime/opt/enthought/1.3/appdata/canopy-1.3.0.1715.rh5-x86_64/lib/python27.zip
+export PYTHONPATH=$PYTHONPATH:/gpfs/runtime/opt/enthought/1.3/appdata/canopy-1.3.0.1715.rh5-x86_64/lib/python2.7
+export PYTHONPATH=$PYTHONPATH:/gpfs/runtime/opt/enthought/1.3/appdata/canopy-1.3.0.1715.rh5-x86_64/lib/python2.7/plat-linux2
+export PYTHONPATH=$PYTHONPATH:/gpfs/runtime/opt/enthought/1.3/appdata/canopy-1.3.0.1715.rh5-x86_64/lib/python2.7/lib-tk
+export PYTHONPATH=$PYTHONPATH:/gpfs/runtime/opt/enthought/1.3/appdata/canopy-1.3.0.1715.rh5-x86_64/lib/python2.7/lib-old
+export PYTHONPATH=$PYTHONPATH:/gpfs/runtime/opt/enthought/1.3/appdata/canopy-1.3.0.1715.rh5-x86_64/lib/python2.7/lib-dynload
+export PYTHONPATH=$PYTHONPATH:/users/aarslan/Enthought/Canopy_64bit/User/lib/python2.7/site-packages
+export PYTHONPATH=$PYTHONPATH:/users/aarslan/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/PIL
+export PYTHONPATH=$PYTHONPATH:/gpfs/runtime/opt/enthought/1.3/appdata/canopy-1.3.0.1715.rh5-x86_64/lib/python2.7/site-packages
 echo after $PYTHONPATH
 
 
