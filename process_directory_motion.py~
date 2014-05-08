@@ -1,3 +1,6 @@
+import sys
+sys.path
+
 import computation as comp, models as mod, params
 import matplotlib as mlp
 import matplotlib.pyplot as plt
