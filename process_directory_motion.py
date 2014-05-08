@@ -1,6 +1,9 @@
 import computation as comp, models as mod, params
 import matplotlib as mlp
 import matplotlib.pyplot as plt
+import sys
+
+sys.path
 import numpy as np
 import scipy as sp
 import os
