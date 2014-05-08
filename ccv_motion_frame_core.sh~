@@ -19,9 +19,9 @@ module unload cuda
 echo 'processing' $8 $2 $3 $4 $5 
 src_code_dir='/users/aarslan/code/dorsoventral'
 joblist='/users/aarslan/joblists/'$8_$2_$3_$4_$5'filter21.jlist'
-
+echo before $PYTHONPATH
 export PYTHONPATH=$PYTHONPATH:/users/aarslan/tools/hmax/models/HNORM
-#python $src_code_dir/process_directory_motion.py --src_dir $1 --deg_r $2 --deg_l $3 --act $4 --seq $5 --target_dir $6 --this_fr $7 --body_type $8
+echo after $PYTHONPATH
 
 
 rm $joblist -f

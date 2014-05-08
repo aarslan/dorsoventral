@@ -1,14 +1,12 @@
 import sys
-
-
-#import computation as comp, models as mod, params
-#import matplotlib as mlp
-#import matplotlib.pyplot as plt
-#import numpy as np
-#import scipy as sp
-#import os
-#import argparse
-#import time
+import computation as comp, models as mod, params
+import matplotlib as mlp
+import matplotlib.pyplot as plt
+import numpy as np
+import scipy as sp
+import os
+import argparse
+import time
 #from hmax.models.dorsal import get_c1, prepare_cuda_kernels, pyramid_vid
 
 def process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq, this_fr):
