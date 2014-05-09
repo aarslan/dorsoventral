@@ -96,7 +96,7 @@ def process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq
 				target_mat_MT_name = os.path.join(target_dir_name, str(this_fr)+'_mt')
 				if not os.path.exists(target_dir_name):
 					os.makedirs(target_dir_name)
-				sp.io.savemat(target_mat_V1_name, {'fr': np.array(features['V1'], dtype='Float32')}, do_compression=True)
+				#sp.io.savemat(target_mat_V1_name, {'fr': np.array(features['V1'], dtype='Float32')}, do_compression=True)
 				sp.io.savemat(target_mat_MT_name, {'fr': np.array(features['MT'], dtype='Float32')}, do_compression=True)
 				#import ipdb; ipdb.set_trace()
 		else:
@@ -111,7 +111,7 @@ def process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq
 				target_mat_MT_name = os.path.join(target_dir_name, str(ii+1)+'_mt')
 				if not os.path.exists(target_dir_name):
 					os.makedirs(target_dir_name)
-				sp.io.savemat(target_mat_V1_name, {'fr': np.array(features['V1'], dtype='Float32')}, do_compression=True)
+				#sp.io.savemat(target_mat_V1_name, {'fr': np.array(features['V1'], dtype='Float32')}, do_compression=True)
 				sp.io.savemat(target_mat_MT_name, {'fr': np.array(features['MT'], dtype='Float32')}, do_compression=True)
 				#import ipdb; ipdb.set_trace()
 			
