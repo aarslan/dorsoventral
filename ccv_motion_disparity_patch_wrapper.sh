@@ -19,7 +19,7 @@ do
 			for seq in $action/*
 			do
 				#sbatch ./ccv_motion_disparity_patch_core.sh $data_in $(($deg+6)) $deg `basename $action` `basename $seq` $data_out $bod; 
-				echo ./ccv_motion_disparity_patch_core.sh $data_in $(($deg+6)) $deg `basename $action` `basename $seq` $data_out $bod; 				
+				./ccv_motion_disparity_patch_core.sh $data_in $(($deg+6)) $deg `basename $action` `basename $seq` $data_out $bod; 				
 				sleep 30
 			done
 		done
