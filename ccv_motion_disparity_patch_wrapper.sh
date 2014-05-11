@@ -14,7 +14,7 @@ for deg in {2..360..30} #{2..360..30}
 do 
 	for bod in human a y
 	do
-		for action in $data_in/$(($deg+6))-$deg/$bod/*
+		for action in $data_in/features_motion/$(($deg+6))-$deg/$bod/*
 		do
 			for seq in $action/*
 			do

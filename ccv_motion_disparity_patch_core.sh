@@ -27,7 +27,7 @@ rm $joblist -f
 
 for fr in {1..45}
 do
-	FILE=$6/$2-$3/$7/$4/$5/${fr}'_mt.mat'
+	FILE=$6/$2-$3/$7/$4/$5/${fr}'.mat'
 	#echo checking $FILE
 	if [ ! -f "$FILE" ]
 	then
