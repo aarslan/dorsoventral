@@ -7,36 +7,43 @@ import os
 import argparse
 import random
 
-
+#gpfs/data/tserre/Users/aarslan/motion_morphing_dataset_stereo/features_motion_fsize21/248-242/y/walk/35_01
 #----#
-def extract_patches(source_stem_dir, target_stem_dir, disp_string, act, seq, num_patches, value_method = 0, patch_ratio =1/3.):
-	source_disparity_dir = os.path.join(source_stem_dir,'disparity', disp_string)
-	source_motion_dir = os.path.join(source_stem_dir,'motion', disp_string)	
+def extract_patches(src_dir, deg_l, deg_r, vid_type, target_stem_dir, body_type, act, seq, this_fr, num_patches, value_method = 0, patch_ratio =1/2.):
+	#(source_stem_dir, target_stem_dir, disp_string, act, seq, num_patches):
+	source_disparity_dir = os.path.join(src_dir, 'features_stereo', deg_r+'-'+deg_l, body_type ) 
+	source_motion_dir = os.path.join(src_dir, 'features_motion',deg_r+'-'+deg_l, body_type )
 
-	pool_shape_m = (1,1,1,5,5)
-	pool_shape_d = (5,5)
-	for fr in range(5, 60):
-		motion_mat_name = os.path.join(source_motion_dir, act, seq, str(fr))
+	pool_shape_m = (1,1,2,2)
+	pool_shape_d = (2,2)
+	if this_fr != -99:
+		my_range = [this_fr]
+	else:
+		my_range = range(1,45)
+
+	for fr in my_range:
+		motion_mat_name = os.path.join(source_motion_dir, act, seq, str(fr)+'_mt')
 		f_motion = sp.io.loadmat(motion_mat_name)
 		f_motion = f_motion['fr']
 
 		disparity_mat_name = os.path.join(source_disparity_dir, act, seq, str(fr))
 		f_disparity = sp.io.loadmat(disparity_mat_name)
 		f_disparity = f_disparity['fr']
-
-		pooled_motion = comp.flexpooling('max', pool_shape_m, f_motion, pool_mode = 'reflect', downsample = True)
-		pooled_disparity = comp.flexpooling('max', pool_shape_d, f_disparity, pool_mode = 'reflect', downsample = True, downsample_overlap=1)
 		
+		pooled_motion = comp.flexpooling('max', pool_shape_m, f_motion, pool_mode = 'reflect', downsample = True, downsample_overlap=0.25)
+		pooled_disparity = comp.flexpooling('max', pool_shape_d, f_disparity, pool_mode = 'reflect', downsample = True, downsample_overlap=0.25) # 
+		#plt.matshow(pooled_motion[1,1,...])
+		#plt.show()
 		
 		arg0 = np.argmax(np.amax(pooled_motion, axis=0), axis=0)
 		arg1 = np.argmax(np.amax(pooled_motion, axis=1), axis=0)
 		eee = cartesian([range(arg0.max()+1), range(arg1.max()+1)])
 		motion_size = pooled_motion.shape
-		new_motion = np.zeros((motion_size[-2], motion_size[-1]))		
+		new_motion = np.zeros((motion_size[-2], motion_size[-1]))
 		for (x,y), value in np.ndenumerate(arg0):
 			new_motion[x,y] = int(np.argwhere(np.sum(eee == [arg0[x,y], arg1[x,y]], axis=1)==2))
 		
-		null1, p_w, null2, p_h = get_coor(pooled_disparity)
+		null1, p_w, null2, p_h = get_coor(pooled_disparity, patch_ratio)
 		
 		if num_patches is not 0:
 			patch_count = num_patches
@@ -48,12 +55,10 @@ def extract_patches(source_stem_dir, target_stem_dir, disp_string, act, seq, num
 			patch_d = np.ones((patch_count, p_h, p_w), dtype = 'uint16')
 			pooled_motion = new_motion
 		else:
-			patch_m = np.ones((patch_count, motion_size[0], motion_size[1], p_h, p_w))
-			patch_d = np.ones((patch_count, p_h, p_w))
-
+			patch_m = np.ones((patch_count, motion_size[0], motion_size[1], p_h, p_w), dtype = 'Float32')
+			patch_d = np.ones((patch_count, p_h, p_w), dtype = 'uint16')
 		
 		if num_patches != 0:
-			#import ipdb; ipdb.set_trace()
 			for pp in range(num_patches):
 				h_rand, hori_bound, v_rand, vert_bound = get_coor(pooled_disparity, patch_ratio)
 				patch_m[pp,:] = get_patch(pooled_motion, h_rand, hori_bound, v_rand, vert_bound)
@@ -61,13 +66,11 @@ def extract_patches(source_stem_dir, target_stem_dir, disp_string, act, seq, num
 		else:
 			h_starts, h_bound, v_starts, v_bound = get_parcels(pooled_disparity, patch_ratio)
 			for pp in range(len(h_starts)):
-				#import ipdb; ipdb.set_trace()
 				patch_m[pp,:] = get_patch(pooled_motion, h_starts[pp], h_bound, v_starts[pp], v_bound)
 				patch_d[pp,:] = get_patch(pooled_disparity, h_starts[pp], h_bound, v_starts[pp], v_bound)
-			
-		import ipdb; ipdb.set_trace()
-		target_dir = os.path.join(target_stem_dir,'motion_disparity_patches', disp_string,act, seq)
+		target_dir = os.path.join(target_stem_dir,'motion_disparity_patches',  deg_r+'-'+deg_l, body_type,act, seq)
 		patch_mat_name = os.path.join(target_dir, str(fr))
+		import ipdb; ipdb.set_trace()
 		if not os.path.exists(target_dir):
 			os.makedirs(target_dir)
 		sp.io.savemat(patch_mat_name, {'patch_m': patch_m, 'patch_d': patch_d})
@@ -134,21 +137,29 @@ def cartesian(arrays, out=None):
 #----#
 def main():
 	parser = argparse.ArgumentParser(description=""" """)
-	parser.add_argument('--target_dir', type=str, default='/home/aarslan/prj/data/CMU_mocap_stereo/')
-	parser.add_argument('--source_dir', type=str, default='/home/aarslan/prj/data/CMU_mocap_stereo/')
-	parser.add_argument('--disp_string', type=str, default='d5s0')
-	parser.add_argument('--act', type=str, default='boxing')
-	parser.add_argument('--seq', type=str, default='13_17')
+	parser.add_argument('--src_dir', type=str, default='/home/aarslan/prj/data/motion_morphing_dataset_stereo/')
+	parser.add_argument('--deg_l', type=str, default='2')
+	parser.add_argument('--deg_r', type=str, default='8')
+	parser.add_argument('--vid_type', type=str, default='frames_proto')
+	parser.add_argument('--body_type', type=str, default='human')
+	parser.add_argument('--act', type=str, default='balletjump')
+	parser.add_argument('--seq', type=str, default='05_16')
+	parser.add_argument('--this_fr', type=int, default=-99)
+	parser.add_argument('--target_dir', type=str, default='/home/aarslan/prj/data/motion_morphing_dataset_stereo/')
 	parser.add_argument('--num_patches', type=int, default=10)
 
 	args = parser.parse_args()
-	target_stem_dir = args.target_dir
-	source_dir = args.source_dir
-	disp_string = args.disp_string
+	src_dir = args.src_dir
+	deg_l = args.deg_l
+	deg_r = args.deg_r
+	vid_type = args.vid_type
+	body_type = args.body_type
 	act = args.act
 	seq =  args.seq
+	this_fr = args.this_fr
+	target_dir = args.target_dir
 	num_patches = args.num_patches
-	extract_patches(source_dir, target_stem_dir, disp_string, act, seq, num_patches)
+	extract_patches(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq, this_fr, num_patches)
 
 if __name__=="__main__":
 	main()
