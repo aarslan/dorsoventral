@@ -31,7 +31,7 @@ do
 	#echo checking $FILE
 	if [ ! -f "$FILE" ]
 	then
-	echo python $src_code_dir/extract_motion_disparity_patches.py --src_dir $1 --deg_r $2 --deg_l $3 --act $4 --seq $5 --target_dir $6 --this_fr $fr --body_type $7 #>> $joblist	
+	echo python $src_code_dir/extract_motion_disparity_patches.py --src_dir $1 --deg_r $2 --deg_l $3 --act $4 --seq $5 --target_dir $6 --this_fr $fr --body_type $7 >> $joblist	
 	fi
 done
 
