@@ -16,7 +16,7 @@ def extract_patches(src_dir, deg_l, deg_r, vid_type, target_stem_dir, body_type,
 
 	pool_shape_m = (1,1,2,2)
 	pool_shape_d = (2,2)
-	if this_fr is not -99:
+	if this_fr != -99:
 		my_range = [this_fr]
 	else:
 		my_range = range(1,45)
@@ -70,7 +70,7 @@ def extract_patches(src_dir, deg_l, deg_r, vid_type, target_stem_dir, body_type,
 				patch_d[pp,:] = get_patch(pooled_disparity, h_starts[pp], h_bound, v_starts[pp], v_bound)
 		target_dir = os.path.join(target_stem_dir,'motion_disparity_patches',  deg_r+'-'+deg_l, body_type,act, seq)
 		patch_mat_name = os.path.join(target_dir, str(fr))
-		import ipdb; ipdb.set_trace()
+		#import ipdb; ipdb.set_trace()
 		if not os.path.exists(target_dir):
 			os.makedirs(target_dir)
 		sp.io.savemat(patch_mat_name, {'patch_m': patch_m, 'patch_d': patch_d})
