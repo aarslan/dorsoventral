@@ -23,7 +23,6 @@ echo before $PYTHONPATH
 export PYTHONPATH=$PYTHONPATH:/users/aarslan/tools/hmax/models/HNORM
 echo after $PYTHONPATH
 
-
 rm $joblist -f
 
 for fr in {1..45}

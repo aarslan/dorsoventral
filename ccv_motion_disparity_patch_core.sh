@@ -35,4 +35,4 @@ do
 	fi
 done
 
-parallel -j8 -a $joblist
+parallel -j12 -a $joblist

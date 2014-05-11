@@ -4,8 +4,8 @@ CODE_DIR=/home/aarslan/prj/code/dorsoventral/disparity
 ANGLES_DIR=/home/aarslan/prj/data/motion_morphing_dataset_angles
 TARGET_DIR=/home/aarslan/prj/data/motion_morphing_dataset_angles
 
-data_in='/gpfs/data/tserre/Users/aarslan/motion_morphing_dataset_stereo/features_motion_multisize'
-data_out='/gpfs/data/tserre/Users/aarslan/motion_morphing_dataset_stereo/patches_multisize'
+data_in='/gpfs/data/tserre/Users/aarslan/motion_morphing_dataset_stereo/'
+data_out='/gpfs/data/tserre/Users/aarslan/motion_morphing_dataset_stereo/'
 
 find $data_out -size 0 -type f -delete 
 
@@ -19,10 +19,10 @@ do
 			for seq in $action/*
 			do
 				sbatch ./ccv_motion_disparity_patch_core.sh $data_in $(($deg+6)) $deg `basename $action` `basename $seq` $data_out $bod; 
-				sleep 1
+				sleep 0.5
 			done
 		done
 	done
-	sleep 90
+	sleep 10
 done
 
