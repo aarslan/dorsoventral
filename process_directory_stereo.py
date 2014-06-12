@@ -26,6 +26,8 @@ def process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq
 		start_time = time.time()
 		imleft = os.path.join(src_dir, deg_l, vid_type, body_type, act, seq, str(fr)+'.png');
 		imright = os.path.join(src_dir, deg_r, vid_type, body_type, act, seq, str(fr)+'.png');
+		print 'loading '+imright
+		print 'loading '+imleft
 		im = []; im.append(imleft); im.append(imright);
 		features = mod.absolute_disparity(par, im)
 		
