@@ -18,7 +18,7 @@ def process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq
 	#import ipdb; ipdb.set_trace()
 	if this_fr != -99:
 		my_range = range(1, frame_cnt+1)
-	else
+	else:
 		my_range = [this_fr]
 
 	for fr in my_range:
