@@ -8,7 +8,7 @@ import argparse
 import time
 #from hmax.models.dorsal import get_c1, prepare_cuda_kernels, pyramid_vid
 
-def process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq):
+def process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq, this_fr):
 	frame_cnt = 45
 	target_stereo_dir = os.path.join(target_dir, deg_l+'-'+deg_r, body_type, act, seq)
 	imH = 432
@@ -71,8 +71,9 @@ def main():
 	body_type = args.body_type
 	act = args.act
 	seq =  args.seq
+	this_fr = args.this_fr
 	target_dir = args.target_dir
-	process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq)
+	process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq, this_fr)
 
 if __name__=="__main__":
 	main()
