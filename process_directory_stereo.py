@@ -16,7 +16,12 @@ def process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq
 
 	par = params_ali.ventral_absolute_disparity_simple_new()
 	#import ipdb; ipdb.set_trace()
-	for fr in range(1, frame_cnt+1):
+	if this_fr != -99:
+		my_range = range(1, frame_cnt+1)
+	else
+		my_range = [this_fr]
+
+	for fr in my_range:
 		print fr
 		start_time = time.time()
 		imleft = os.path.join(src_dir, deg_l, vid_type, body_type, act, seq, str(fr)+'.png');
@@ -54,6 +59,7 @@ def main():
 	parser.add_argument('--body_type', type=str, default='human')
 	parser.add_argument('--act', type=str, default='balletjump')
 	parser.add_argument('--seq', type=str, default='05_16')
+	parser.add_argument('--this_fr', type=int, default=-99)
 	parser.add_argument('--target_dir', type=str, default='/home/aarslan/prj/data/motion_morphing_dataset_stereo/features_stereo')
 	
 
