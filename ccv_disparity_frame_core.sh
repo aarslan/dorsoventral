@@ -8,8 +8,8 @@
 #SBATCH --exclusive
 #SBATCH --exclude=smp012,smp013,smp014,smp015
 
-#SBATCH -J motion_xtract_trial
-#SBATCH -o /users/aarslan/out/motion_xtract_%j.out
+#SBATCH -J disparity_xtract_trial
+#SBATCH -o /users/aarslan/out/disparity_xtract_%j.out
 
 
 module unload python
@@ -27,7 +27,7 @@ rm $joblist -f
 
 for fr in {1..45}
 do
-	FILE=$6/$2-$3/$7/$4/$5/${fr}'_mt.mat'
+	FILE=$6/$2-$3/$7/$4/$5/${fr}'.mat'
 	#echo checking $FILE
 	if [ ! -f "$FILE" ]
 	then

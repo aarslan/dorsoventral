@@ -19,8 +19,8 @@ def extract_patches(source_stem_dir, target_stem_dir, act, seq, num_patches, val
 		f_motion = sp.io.loadmat(motion_mat_name)
 		f_motion = f_motion['fr']
 
-		pooled_motion = comp.flexpooling('max', pool_shape_m, f_motion, pool_mode = 'reflect', downsample = True, downsample_overlap=1)
-		#import ipdb; ipdb.set_trace()
+		pooled_motion = comp.flexpooling('max', pool_shape_m, f_motion, pool_mode = 'reflect', downsample = True) #, downsample_overlap=1
+		import ipdb; ipdb.set_trace()
 		arg0 = np.argmax(np.amax(pooled_motion, axis=0), axis=0)
 		arg1 = np.argmax(np.amax(pooled_motion, axis=1), axis=0)
 		eee = cartesian([range(arg0.max()+1), range(arg1.max()+1)])
