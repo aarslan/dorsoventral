@@ -20,7 +20,7 @@ def process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq
 	imW = 324
 
 	par = params_ali.ventral_absolute_disparity_simple_new()
-	import ipdb; ipdb.set_trace()
+	#import ipdb; ipdb.set_trace()
 	for fr in range(1, frame_cnt+1):
 		print fr
 		start_time = time.time()
@@ -33,9 +33,9 @@ def process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq
 		D = np.argmax(av_features, axis=0);
 		mD = np.squeeze(np.max(av_features, axis=0, keepdims=True));
 		res = sp.array(D*(mD>0.9)/1, dtype='uint8')
-		plt.matshow(res)
-		plt.show()
-		import ipdb; ipdb.set_trace()
+		#plt.matshow(res)
+		#plt.show()
+		#import ipdb; ipdb.set_trace()
 		mat_name = os.path.join(target_stereo_dir, str(fr))
 
 		if not os.path.exists(target_stereo_dir):

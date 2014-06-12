@@ -8,11 +8,6 @@ import argparse
 import time
 #from hmax.models.dorsal import get_c1, prepare_cuda_kernels, pyramid_vid
 
-import pycuda
-from pycuda import driver
-from pycuda import gpuarray
-from pycuda.compiler import SourceModule
-
 def process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq):
 	frame_cnt = 45
 	target_stereo_dir = os.path.join(target_dir, deg_l+'-'+deg_r, body_type, act, seq)
