@@ -16,6 +16,7 @@ module unload python
 module load enthought
 module unload cuda
 
+echo 'arguments received' $1 $2 $3 $4 $5 $6 $7
 echo 'processing' $7 $2 $3 $4 $5 
 src_code_dir='/users/aarslan/code/dorsoventral'
 joblist='/users/aarslan/joblists/'$7_$2_$3_$4_$5'.jlist'
