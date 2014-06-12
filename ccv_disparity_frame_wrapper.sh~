@@ -2,10 +2,10 @@
 
 CODE_DIR=/home/aarslan/prj/code/dorsoventral/disparity
 ANGLES_DIR=/home/aarslan/prj/data/motion_morphing_dataset_angles
-TARGET_DIR=/home/aarslan/prj/data/motion_morphing_dataset_angles
+TARGET_DIR=/gpfs/data/tserre/Users/aarslan/motion_morphing_dataset_stereo/features_stereo
 
 data_in=$ANGLES_DIR
-data_out='/gpfs/data/tserre/Users/aarslan/motion_morphing_dataset_stereo/features_motion_fsize21'
+data_out=$TARGET_DIR
 
 find $data_out -size 0 -type f -delete 
 
