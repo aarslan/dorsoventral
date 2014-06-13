@@ -15,7 +15,7 @@ def extract_patches(src_dir, deg_l, deg_r, vid_type, target_stem_dir, body_type,
 	source_motion_dir = os.path.join(src_dir, 'features_motion',deg_r+'-'+deg_l, body_type )
 	#import ipdb; ipdb.set_trace()
 	pool_shape_m = (1,1,54,54)
-	pool_shape_d = (54,54)
+	pool_shape_d = (1,1,54,54)
 	if this_fr != -99:
 		my_range = [this_fr]
 	else:
@@ -29,17 +29,22 @@ def extract_patches(src_dir, deg_l, deg_r, vid_type, target_stem_dir, body_type,
 		disparity_mat_name = os.path.join(source_disparity_dir, act, seq, str(fr))
 		f_disparity = sp.io.loadmat(disparity_mat_name)
 		f_disparity = f_disparity['fr']
-		
+	
 		pooled_motion = comp.flexpooling('max', pool_shape_m, f_motion,  downsample = True)
 		pooled_disparity = comp.flexpooling('max', pool_shape_d, f_disparity, downsample = True) # 
 		
-		import ipdb; ipdb.set_trace()
-		plt.matshow(pooled_disparity)
-		plt.show()
+
+		av_features =pooled_disparity
+		D = np.argmax(av_features, axis=0);
+		mD = np.squeeze(np.max(av_features, axis=0, keepdims=True));
+		pooled_disparity = sp.array(D*(mD>0.9)/1, dtype='uint8') #here we got rid of the disparity bands and things are back to normal. Notice the thresholding is applied here (0.9)
+		#import ipdb; ipdb.set_trace()
+		#plt.matshow(res)
+		#plt.show()
 		
-		plt.matshow(np.mean(pooled_motion,axis=(0,1)))
-		plt.show()
-		import ipdb; ipdb.set_trace()
+		#plt.matshow(np.mean(pooled_motion,axis=(0,1)))
+		#plt.show()
+		#import ipdb; ipdb.set_trace()
 		arg0 = np.argmax(np.amax(pooled_motion, axis=0), axis=0)
 		arg1 = np.argmax(np.amax(pooled_motion, axis=1), axis=0)
 		eee = cartesian([range(arg0.max()+1), range(arg1.max()+1)])
