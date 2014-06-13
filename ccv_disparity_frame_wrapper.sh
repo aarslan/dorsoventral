@@ -24,6 +24,6 @@ do
 			done
 		done
 	done
-	sleep 90
+	sleep 10
 done
 
