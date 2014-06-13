@@ -7,6 +7,8 @@ TARGET_DIR=/gpfs/data/tserre/Users/aarslan/motion_morphing_dataset_stereo/featur
 data_in=$ANGLES_DIR
 data_out=$TARGET_DIR
 
+type=frames_proto
+
 find $data_out -size 0 -type f -delete 
 
 for deg in {2..360..30}
