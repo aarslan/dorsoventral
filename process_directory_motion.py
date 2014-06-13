@@ -28,50 +28,6 @@ def process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq
 
 	if loop_proc: #if the video loops seamlessly, you can pad the ends with frames from beginning and end
 		vid = np.ones([frame_cnt, imH, imW])
-##		for fr in range(1, frame_cnt): #load the regular features here first
-##			stereo_dir_name = os.path.join(target_stereo_dir, act, seq)
-##			stereo_mat_name = os.path.join(stereo_dir_name, str(fr))
-##			target_dir_name = os.path.join(target_motion_dir, act, seq)
-##			target_mat_name = os.path.join(target_dir_name, str(fr))
-##			frame_dict = sp.io.loadmat(stereo_mat_name)
-##			temp = frame_dict['fr']
-##			temp = (temp != 0)*255
-##			#import ipdb; ipdb.set_trace()
-##			vid[fr,:,:] = np.array(temp)
-##			#print str(fr+filt_fr)
-##		vid2 = np.concatenate((vid[-1*(half_filter+1):-1,:,:], vid, vid[0:half_filter,:,:]))
-##		
-##		if this_fr != -99:
-##				real_fr = this_fr+half_filter-1
-##				start = real_fr-half_filter
-##				end = real_fr+half_filter
-##				im = vid2[start:end,:,:]
-##				#import ipdb; ipdb.set_trace()
-##				features= mod.dorsal_pattern_divisive(par, im)
-##				target_dir_name = os.path.join(target_motion_dir, act, seq)
-##				target_mat_V1_name = os.path.join(target_dir_name, str(this_fr)+'_v1')
-##				target_mat_MT_name = os.path.join(target_dir_name, str(this_fr)+'_mt')
-##				if not os.path.exists(target_dir_name):
-##					os.makedirs(target_dir_name)
-##				sp.io.savemat(target_mat_V1_name, {'fr': np.array(features['V1'], dtype='Float32')}, do_compression=True)
-##				sp.io.savemat(target_mat_MT_name, {'fr': np.array(features['MT'], dtype='Float32')}, do_compression=True)
-##				#import ipdb; ipdb.set_trace()
-##		else:
-##			for ii,f_fr in enumerate(range(half_filter, frame_cnt+half_filter)):
-##				start = f_fr-half_filter
-##				end = f_fr+half_filter
-##				im = vid2[start:end,:,:]
-##				#import ipdb; ipdb.set_trace()
-##				features= mod.dorsal_pattern_divisive(par, im)
-##				target_dir_name = os.path.join(target_motion_dir, act, seq)
-##				target_mat_V1_name = os.path.join(target_dir_name, str(ii+1)+'_v1')
-##				target_mat_MT_name = os.path.join(target_dir_name, str(ii+1)+'_mt')
-##				if not os.path.exists(target_dir_name):
-##					os.makedirs(target_dir_name)
-##				sp.io.savemat(target_mat_V1_name, {'fr': np.array(features['V1'], dtype='Float32')}, do_compression=True)
-##				sp.io.savemat(target_mat_MT_name, {'fr': np.array(features['MT'], dtype='Float32')}, do_compression=True)
-##				#import ipdb; ipdb.set_trace()
-				
 		for fr in range(1, frame_cnt): #load the regular features here first
 			stereo_dir_name = os.path.join(target_stereo_dir, act, seq)
 			stereo_mat_name = os.path.join(stereo_dir_name, str(fr))

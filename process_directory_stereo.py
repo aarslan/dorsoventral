@@ -10,7 +10,7 @@ import time
 
 def process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq, this_fr):
 	frame_cnt = 45
-	target_stereo_dir = os.path.join(target_dir, deg_l+'-'+deg_r, body_type, act, seq)
+	target_stereo_dir = os.path.join(target_dir, deg_r+'-'+deg_l, body_type, act, seq)
 	imH = 432
 	imW = 324
 
