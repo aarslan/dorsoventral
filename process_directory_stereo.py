@@ -15,8 +15,8 @@ def process_dir(src_dir, deg_l, deg_r, vid_type, target_dir, body_type, act, seq
 	imW = 324
 
 	par = params_ali.ventral_absolute_disparity_simple_new()
-	#import ipdb; ipdb.set_trace()
-	if this_fr != -99:
+	import ipdb; ipdb.set_trace()
+	if this_fr == -99:
 		my_range = range(1, frame_cnt+1)
 	else:
 		my_range = [this_fr]
