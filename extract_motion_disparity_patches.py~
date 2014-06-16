@@ -34,11 +34,11 @@ def extract_patches(src_dir, deg_l, deg_r, vid_type, target_stem_dir, body_type,
 		pooled_disparity = comp.flexpooling('max', pool_shape_d, f_disparity, downsample = True) # 
 		
 
-		av_features =pooled_disparity
-		D = np.argmax(av_features, axis=0);
-		mD = np.squeeze(np.max(av_features, axis=0, keepdims=True));
-		pooled_disparity = sp.array(D*(mD>0.9)/1, dtype='uint8') #here we got rid of the disparity bands and things are back to normal. Notice the thresholding is applied here (0.9)
-		import ipdb; ipdb.set_trace()
+		#av_features =pooled_disparity
+		#D = np.argmax(av_features, axis=0);
+		#mD = np.squeeze(np.max(av_features, axis=0, keepdims=True));
+		#pooled_disparity = sp.array(D*(mD>0.9)/1, dtype='uint8') #here we got rid of the disparity bands and things are back to normal. Notice the thresholding is applied here (0.9)
+		#import ipdb; ipdb.set_trace()
 		#plt.matshow(res)
 		#plt.show()
 		
@@ -49,6 +49,7 @@ def extract_patches(src_dir, deg_l, deg_r, vid_type, target_stem_dir, body_type,
 		arg1 = np.argmax(np.amax(pooled_motion, axis=1), axis=0)
 		eee = cartesian([range(arg0.max()+1), range(arg1.max()+1)])
 		motion_size = pooled_motion.shape
+		disparity_size = pooled_disparity.shape
 		new_motion = np.zeros((motion_size[-2], motion_size[-1]))
 		for (x,y), value in np.ndenumerate(arg0):
 			new_motion[x,y] = int(np.argwhere(np.sum(eee == [arg0[x,y], arg1[x,y]], axis=1)==2))
@@ -59,14 +60,10 @@ def extract_patches(src_dir, deg_l, deg_r, vid_type, target_stem_dir, body_type,
 			patch_count = num_patches
 		else:
 			patch_count = pow(1/patch_ratio, 2) #this is the case for parcellation
+		#import ipdb; ipdb.set_trace()
 
-		if value_method == 1:
-			patch_m = np.ones((patch_count, p_h, p_w), dtype = 'uint16')
-			patch_d = np.ones((patch_count, p_h, p_w), dtype = 'uint16')
-			pooled_motion = new_motion
-		else:
-			patch_m = np.ones((patch_count, motion_size[0], motion_size[1], p_h, p_w), dtype = 'Float32')
-			patch_d = np.ones((patch_count, p_h, p_w), dtype = 'uint16')
+		patch_m = np.ones((patch_count, motion_size[0], motion_size[1], p_h, p_w), dtype = 'Float32')
+		patch_d = np.ones((patch_count, disparity_size[-3], p_h, p_w), dtype = 'Float32')
 		
 		if num_patches != 0:
 			for pp in range(num_patches):
@@ -91,7 +88,7 @@ def get_patch(feat, h_rand, hori_bound, v_rand, vert_bound):
 	if feat.ndim == 4:
 		return feat[:,:,v_rand:v_rand+vert_bound, h_rand:h_rand+hori_bound]
 	else:
-		return feat[ v_rand:v_rand+vert_bound, h_rand:h_rand+hori_bound]
+		return feat[:, v_rand:v_rand+vert_bound, h_rand:h_rand+hori_bound]
 
 #----#
 def get_coor(feat, rat = 1/3.):
